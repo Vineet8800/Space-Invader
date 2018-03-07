@@ -1,0 +1,88 @@
+html{
+	width:100%;
+	height:100%;
+	margin: 0;
+	overflow : hidden;
+
+} 
+
+body { 
+	width:100%;
+	height:100%;
+	margin: 0;
+	overflow : auto;
+}
+
+
+canvas{
+	background-color: black;
+	width: 100%; 
+	height: 100%;
+	overflow: hidden;
+
+}
+.player{
+	border: 5px solid black;
+	width: 100px;
+	height: 100px
+}
+
+.card-back{
+	text-shadow: 2px 2px orange;
+}
+
+.jumbo{
+	
+	background-image: url(../images/background/space1.jpg);
+}
+
+.hidden{
+	display: none;
+}
+
+.slider {
+	-webkit-appearance: none;
+    background: orange;
+    outline: none;
+    opacity: 0.7;
+    height: auto;
+    
+    transition: opacity .2s;
+
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    
+    width: 25px;
+    height: 25px;
+    background: white;
+    cursor: pointer;
+    
+}
+
+
+.slider:hover {
+    opacity: 1;
+}
+
+
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: white;
+    cursor: pointer;
+
+}
+
+label{
+    display: table;
+    color: #fff;
+     }
+
+
+
+input[type="file"] {
+    display: none;
+}
