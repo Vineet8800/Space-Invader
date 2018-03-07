@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Invader</title>
+		<link rel="icon" href="images/icon.ico">
+		<script src="scripts/jquery-3.3.1.js"> </script>
+		<script type="text/javascript" src="scripts/popper.min.js"></script>
+		<script src="scripts/bootstrap.min.js"> </script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="scripts/feather.min.js"></script>
+
+
+
+	</head>
+	<body class="body bg-info">
+		<!--background music -->
+		<audio id="backgroundMusic" src="sounds/background.mp3" autoplay="true" loop="true"></audio>
+
+		<!-- Main Menu Page -->
+		<div id="menu-page">
+			
+			<div class=" text-center display-1 bg-info card-back mt-3">
+			  Space Invader
+			</div>
+			<div class=" mt-3 container text-center mb-5">
+				
+				<div class="jumbotron jumbo mt-5 " style="min-height: 400px; background-color:#5499C7" ></div>
+				<div class=" btn-group btn-group-lg btn-group">
+
+					<button id="play-button" type="button" class="btn btn-primary btn-lg mr-3 rounded" style="font-size:30px "> Play <span data-feather="play" ></span></button>						
+					
+					<button id="settings-button" type="button" class="btn btn-primary btn-lg mr-3 rounded" style="font-size:30px"> Settings <span data-feather="settings" ></span></button>
+
+					<button id="restart-button" type="button" class="btn btn-primary btn-lg mr-3 hidden restart rounded" style="font-size:30px"> Restart <span data-feather="refresh-ccw" ></span></button>
+					
+					<button id="instruction-button" type="button" class="btn btn-primary btn-lg mr-3 rounded" style="font-size:30px "> Instruction <span data-feather="info" ></span></button>
+
+					<button id="exit-button" type="button" class="btn btn-danger btn-lg mr-3 rounded" style="font-size:30px"> Exit <span data-feather="x" ></span></button>	
+				</div>					
+			</div>
+		</div>	<!-- Main Menu end -->
+		
+		<!-- Game Over Page -->
+		<div id="gameOver-page" class="hidden">
+			
+			<div class=" text-center display-1 card-back"> Game Over	</div>
+			<div class="text-center">
+				<h2 id="score" class="display-4"></h2>
+			</div>
+			<div class=" mt-3 container text-center">
+				<button id="play-again-button" type="button" class="btn btn-primary btn-lg restart" style="font-size:40px">Play Again</button>
+			</div>
+		</div><!-- Game over page end -->
+
+
+		<!-- Setting page -->
+		<div id="customize-page" class="hidden">
+
+			<div class=" text-center display-1 card-back">Customizing Space Invader	</div>
+			<div class=" mt-3 container row">
+				<div class="container offset-lg-4 col-lg-4 offset-md-2 col-md-6 offset-sm-3 col-sm-6 offset-xs-3 col-xs-6 btn-group btn-group-lg btn-group-vertical">
+
+					<div class="container input-group mt-4 ml-0  text-center ">
+												
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 input-group-prepend pr-0">
+							<button class="btn btn-primary" id="volume-desc" > - </button> 
+						</div>
+						<div class=" col-lg-8 col-md-8 col-sm-8 col-xs-8 mt-1">
+							<input type="range" id="volume-rocker" class=" slider bg-warning " style="width: inherit; height:33px;"  value="0.5" min="0.0" max="1.0" step="0.01" />
+						</div>
+								
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 input-group-append  pl-0 mr-0">
+							<button class="btn btn-primary" id="volume-incr" > + </button>
+						</div>
+
+					</div>
+
+					<br>
+					<button id="music-button" type="button" class="btn btn-primary btn-lg mt-2 " style="font-size:30px" data-toggle="tooltip" data-placement="left" title="Turn Background Music On or Off"> <span id="musicText">Music On </span> <span id="musicIcon" data-feather="headphones" class="float-right mt-2" ></span></button>
+											 
+					<button id="sound-button" type="button" class="btn btn-primary btn-lg mt-3" style="font-size:30px" data-toggle="tooltip" data-placement="left" title="Turn Game Sound On or Off"> <span id="soundText">Sound On </span> <span id="soundIcon" data-feather="speaker" class="float-right mt-2"></span></button>
+
+					<label  class="btn btn-primary btn-lg mt-3" style="font-size:30px" data-toggle="tooltip" data-placement="left" title="Copy Mp3 file to Sound Folder and Select it">My Own Music <span data-feather="music" class="float-right mt-2" ></span><input type="file" id ="select-music-button"   size="60" > </label> 
+
+
+					<button id="back-button" type="button" class="btn btn-primary btn-lg mt-3 mb-5" style="font-size:30px" data-toggle="tooltip" data-placement="left" title="Back to Main Menu"> Back <span data-feather="corner-down-left" class="float-right mt-2"></span></button>
+										
+					<h3 class="mt-2 ml-5"> <span data-feather="music" ></span> Music by Intersteler</h3>
+				</div>
+
+				<div class=" container row  col-lg-4 col-md-4 col-sm-12 col-xs-12">
+									
+										
+					<div class="offset-lg-2 col-lg-4 offset-md-1 col-md-4 offset-sm-2 col-sm-5 mt-5" >
+						<button id="player1" class="btn player bg-warning"><img   src="images/player1.png"></button>
+					</div>
+					<div class="offset-lg-2 col-lg-4 offset-md-3 col-md-4 col-sm-4 mt-5" >
+						<button id="player2" class="btn player bg-primary"><img   src="images/player2.png"></button>
+					</div>
+										
+					<div class="offset-lg-2 col-lg-4 offset-md-1 col-md-4 offset-sm-2 col-sm-5  mt-5 " >
+						<button id="player3" class="btn player bg-primary "><img  src="images/player3.png"></button>
+					</div>
+										
+					<div class="offset-lg-2 col-lg-4 offset-md-3 col-md-4  col-sm-5 mt-5" >
+						<button id="player4" class="btn player bg-primary"><img   src="images/player4.png"></button>
+					</div>
+
+					<div class="offset-lg-2 col-lg-4 offset-md-1 col-md-4 offset-sm-2 col-sm-5 mt-5" >
+						<button id="player5" class="btn player bg-primary "><img  src="images/player5.png"></button>
+					</div>
+
+					<div class="offset-lg-2 col-lg-4 offset-md-3 col-md-4 col-sm-5 mt-5 mb-5 " >
+						<button id="player6" class="btn player bg-primary "><img  src="images/player6.png"></button>
+					</div>
+									
+				</div>
+			</div>
+		</div> <!-- Setting page end -->
+
+
+		<!--Instruction page start -->
+		<div id="instruction-page" class="hidden">
+			
+			<div class=" text-center display-1 bg-info card-back "> Space Invader User Manual </div>
+			<div class="container  mt-5">
+				<div class="card border-0 " >
+					<div class="text-center">
+						<img class="card-img-top" src="images/gameplay6.png" alt="Card image cap">
+	  				</div>
+
+	  				<div class="card-body bg-light">
+	  					 <h1 class="card-title text-center display-3 text-default card-back">How To Play</h1>
+	   					 <h3>
+	   					 	<br>
+	   					 	<b class="display-5 text-info">Default Buttons ~~</b> <br><br>
+	   					 	<b>Shoot  : </b> SpaceBar , MouseLeft <br>
+	   					 	<b>Laser shoot  :  </b>Shift <br>
+	   					 	<b>Pause  :  </b>Esc
+
+	   					 	<br><br>
+
+	   					 	<b class="display-5 text-info">How to change Spaceship Avatar? </b> <br><br>
+	   					 	<p>To change your Spaceship Avatar, go to the Settings and choose one of the available Spaceships.</p>
+
+	   					 	<br>
+
+	   					 	<b class="display-5 text-info">How to turn On/Off background music ? </b> <br><br>
+	   					 	<p>To turn On/Off background music, go to the Settings and click on Music On/Off Button.</p>
+
+	   					 	<br>
+
+	   					 	<b class="display-5 text-info">How to turn On/Off game sounds ? </b> <br><br>
+	   					 	<p>To turn On/Off game sounds(shoot,explode), go to the Settings and click on Sound On/Off Button.</p>
+
+	   					 	<br>
+
+	   					 	<b class="display-5 text-info">How to choose my own background music ? </b> <br><br>
+	   					 	<p>To choose your own background music, copy the .mp3 file to the Sound folder of the game. Now go to the game Settings and click on "My Own Music" Button. Select your copied file. Your music will automatically starts playing.</p>
+
+	   					 	<br><br>
+
+	    				</h3>
+
+	    				<div class="jumbotron bg-dark mb-2 rounded">
+	    				<div class="container row mt-2">
+	    					<div class="col-lg-2">
+	    						<img  src="images/enemyl.png" > 
+   					 		</div>
+   					 		<div class="col-lg-7 mt-4">
+   					 			<h2 class="font-weight-light text-light"> Normal Enemy Ship. Kill Price 10 points </h2>
+   					 		</div>
+   					 	</div>
+
+   					 	<div class="container row mt-5">
+	    					<div class="col-lg-2">
+	    						<img  src="images/specialEnemyl.png">
+   					 		</div>
+   					 		<div class="col-lg-10 mt-4">
+   					 			<h2 class="font-weight-light text-light"> Special Enemy Ship. Kill Price 50 points + A Life Bonus </h2>
+   					 		</div>
+   					 	</div>
+
+   					 	<div class="container row mt-5">
+	    					<div class="col-lg-2">
+	    						<img  src="images/rewardLarge.png"> 
+   					 		</div>
+   					 		<div class="col-lg-10 mt-4">
+   					 			<h2 class="font-weight-light text-light"> Special Reward Ship. Collide with it and access the reserved blaster cannons for 10 seconds</h2>
+   					 		</div>
+   					 	</div>
+   					 	</div>
+   					
+	  				</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button id="instruction-back-button" type="button" class="btn btn-primary btn-lg mt-3 mb-5" style="font-size:30px" data-toggle="tooltip" data-placement="left" title="Back to Main Menu"> Back <span data-feather="corner-down-left" class="float-right mt-2"></span></button>
+			</div>
+			
+		</div> <!-- canvas end -->
+
+		<!--Canvas start-->
+		<canvas id="mainGame" class="hidden" ></canvas> 
+		<!-- canvas end -->
+
+		<script type="text/javascript" src="scripts/sound.js"></script>
+		<script type="text/javascript" src="scripts/jquery.hotkeys.js"> </script>
+		<script type="text/javascript" src="scripts/sprite.js"> </script>
+		<script type="text/javascript" src="scripts/canvasScript.js"> </script>
+	
+
+
+	</body>
+</html>
